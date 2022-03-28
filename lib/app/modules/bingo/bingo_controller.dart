@@ -17,6 +17,7 @@ class BingoController extends GetxController {
       numSorteado.value = num;
       print('num sorte' + numSorteado.value.toString());
       tela.value = num.toString();
+      //update();
     } else {
       print('numero ja sorteado ' + num.toString());
       drawNumber();

@@ -33,7 +33,7 @@ class BingoPage extends GetView<BingoController> {
           SizedBox(
             height: 550,
             child: GridView.builder(
-                itemCount: 75,
+                itemCount: controller.itemCount.value,
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 55,
                 ),
@@ -42,11 +42,10 @@ class BingoPage extends GetView<BingoController> {
                       'numsorteado' + controller.numSorteado.value.toString());
                   if (controller.numSorteado.value == index) {
                     RxBool teste = true.obs;
-                    return Obx(() => ButtonBingo(index: index, visible: teste));
+                    return ButtonBingo(index: index, visible: teste);
                   } else {
                     RxBool teste1 = false.obs;
-                    return Obx(
-                        () => ButtonBingo(index: index, visible: teste1));
+                    return ButtonBingo(index: index, visible: teste1);
                   }
                 }),
           )
