@@ -1,5 +1,4 @@
 import 'package:bingo_melissa/app/modules/bingo/widgets/button_bingo.dart';
-import 'package:bingo_melissa/app/modules/bingo/widgets/button_bingo_visible.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import './bingo_controller.dart';
@@ -38,16 +37,9 @@ class BingoPage extends GetView<BingoController> {
                   maxCrossAxisExtent: 55,
                 ),
                 itemBuilder: (_, index) {
-                  print(
-                      'numsorteado' + controller.numSorteado.value.toString());
-                  if (controller.numSorteado.value == index) {
-                    RxBool teste = true.obs;
-                    return ButtonBingo(index: index, visible: teste);
-                  } else {
-                    RxBool teste1 = false.obs;
-                    return ButtonBingo(index: index, visible: teste1);
+                  return ButtonBingo(index: index,);
                   }
-                }),
+                ),
           )
         ],
       ),
