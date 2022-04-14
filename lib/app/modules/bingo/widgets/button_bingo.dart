@@ -15,7 +15,7 @@ class ButtonBingo extends GetView<BingoController> {
     return Stack(
       children: [
         Obx(() => Visibility(
-              visible: controller.listaBingo[index].selected,
+              visible: controller.listBingo[index].selected,
               child: Container(
                 width: 50,
                 height: 50,
@@ -29,7 +29,7 @@ class ButtonBingo extends GetView<BingoController> {
               width: 40,
               height: 40,
               color: Colors.blue,
-              child: Center(child: Text(controller.listaBingo[index].index.toString())),
+              child: Center(child: Text(controller.listBingo[index].index.toString())),
             ),
           ),
         ),

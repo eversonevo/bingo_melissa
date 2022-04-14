@@ -14,6 +14,19 @@ class BingoPage extends GetView<BingoController> {
       ),
       body: Column(
         children: [
+          Text('Total de rodadas: '+controller.rodadas.toString()),
+          Container(
+            height: 50,
+            child: Row(
+              children: [
+                Text('Rodada: '),
+                Obx (() => Text(controller.iniciaRodada.value.toString())),
+                TextButton(onPressed: controller.validaRodadas, child: Text('PRÓXIMA RODADA')),
+              ],
+            ),
+          ),
+          SizedBox(height: 8,),
+          Text('Prêmio: '),
           SizedBox(
             width: double.infinity,
             height: 30,
