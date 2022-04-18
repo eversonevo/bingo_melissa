@@ -17,18 +17,24 @@ class ButtonBingo extends GetView<BingoController> {
         Obx(() => Visibility(
               visible: controller.listBingo[index].selected,
               child: Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+                color: Colors.yellow,
+                ),
                 width: 50,
                 height: 50,
-                color: Colors.yellow,
               ),
             )),
         Center(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+                                            color: Colors.white,
+
+                              ),
+
               width: 40,
               height: 40,
-              color: Colors.blue,
               child: Center(child: Text(controller.listBingo[index].index.toString())),
             ),
           ),

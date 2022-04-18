@@ -29,6 +29,9 @@ class BingoController extends GetxController {
   void validaRodadas(){
     if (iniciaRodada.value < rodadas.value){
       iniciaRodada+=1;
+      //limpaNumber();
+      listBingo.clear();
+      tela.value = "0";
       criaNumber();
     }
     
@@ -58,8 +61,19 @@ class BingoController extends GetxController {
       }
     
     });      
+
+    
+    }
+
+    void limpaNumber(){
+      int i = 0;
+      while(i < listBingo.length){
+        listBingo[i] = Bingo(index: i,selected: false);
+      }
+    }
    
   }
-}
+
+  
 
 
