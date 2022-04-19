@@ -1,4 +1,6 @@
 import 'package:bingo_melissa/app/modules/bingo/widgets/button_bingo.dart';
+import 'package:bingo_melissa/app/modules/bingo/widgets/gera_premios.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import './bingo_controller.dart';
@@ -10,6 +12,7 @@ class BingoPage extends GetView<BingoController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('BingoPage'),
       ),
       body: Column(
@@ -26,7 +29,22 @@ class BingoPage extends GetView<BingoController> {
             ),
           ),
           SizedBox(height: 8,),
-          Text('Prêmio: '),
+          Row(
+            children: [
+              Text('Prêmio: '),
+                Obx (() => Text(controller.premios.value.toString())),
+                SizedBox(
+                  width: Get.width * 0.9,
+                  height: 30,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: controller.premios.value,
+                    itemBuilder: (_, index){
+                      return Expanded(child: GeraPremios(index: index));
+                    }),
+                ),
+            ],
+          ),
           SizedBox(
             width: double.infinity,
             height: 30,
