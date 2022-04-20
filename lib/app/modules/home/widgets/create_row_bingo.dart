@@ -11,7 +11,7 @@ class CreateRowBingo extends GetView<HomeController> {
 
    @override
    Widget build(BuildContext context) {
-       if (_tipo == 'numeros'){
+       /*if (_tipo == 'numeros'){
          return Container(
          width: Get.width * 0.9,
          height: 50,
@@ -22,14 +22,20 @@ class CreateRowBingo extends GetView<HomeController> {
              Text('Números de: 01'),
              SizedBox(width: 8,),
              Obx(() => Text('Até: '+controller.numeros.toString())),
-             Column(
+             Stack(
                children: [
-                 InkWell(child: Icon(Icons.arrow_drop_up),onTap: (){
-                   controller.cliqueNumeros('acima');
-                 },),
-                 InkWell(child: Icon(Icons.arrow_drop_down), onTap: (){
-                   controller.cliqueNumeros('abaixo');
-                 },),
+                 Positioned(
+                   right: 0.5,
+                   top: 0.01,
+                   child: InkWell(child: Icon(Icons.arrow_drop_up),onTap: (){
+                     controller.cliqueNumeros('acima');
+                   },),
+                 ),
+                 Positioned(
+                   child: InkWell(child: Icon(Icons.arrow_drop_down), onTap: (){
+                     controller.cliqueNumeros('abaixo');
+                   },),
+                 ),
                ],
              ),
            ],
@@ -82,4 +88,126 @@ class CreateRowBingo extends GetView<HomeController> {
        }
        return Container();
   }
+}*/
+if (_tipo == 'numeros'){
+  return Container(
+    decoration: BoxDecoration(
+    color: Colors.blueGrey[200],
+    borderRadius: BorderRadius.circular(10)),
+    width: Get.width * 0.7,
+    height: Get.height * 0.1,
+    
+    child: Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text('Números de: 01   Até ', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+        ),
+        Positioned(
+          left: Get.width * 0.50,
+          child: Obx(() => Text(controller.numeros.toString(), style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.red)))),
+        Positioned(
+          top: 5,
+          right: 5,          
+          child: InkWell(
+            onTap: (){
+                controller.cliqueNumeros('acima');
+            },
+            child: const Icon(Icons.arrow_drop_up,size: 40,),
+          ),),
+        Positioned(
+          bottom: 5,
+          right: 5,
+          child: InkWell(
+            onTap: (){
+                controller.cliqueNumeros('abaixo');
+            },
+            child: const Icon(Icons.arrow_drop_down,size: 40,),
+          ),),
+      ],
+    ),
+    );    
+} else if (_tipo == 'rodadas'){
+    return Container(
+    decoration: BoxDecoration(
+    color: Colors.blueGrey[200],
+    borderRadius: BorderRadius.circular(10)),
+    width: Get.width * 0.7,
+    height: Get.height * 0.1,
+    
+    child: Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text('Quantidade de Rodadas: ', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+        ),
+        Positioned(
+          left: Get.width * 0.50,
+          child: Obx(() => Text(controller.rodadas.toString(), style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.red)))),
+        Positioned(
+          top: 5,
+          right: 5,          
+          child: InkWell(
+            onTap: (){
+                controller.cliqueRodadas('acima');
+            },
+            child: const Icon(Icons.arrow_drop_up,size: 40,),
+          ),),
+        Positioned(
+          bottom: 5,
+          right: 5,
+          child: InkWell(
+            onTap: (){
+                controller.cliqueRodadas('abaixo');
+            },
+            child: const Icon(Icons.arrow_drop_down,size: 40,),
+          ),),
+      ],
+    ),
+    );
+}else{
+  return Container(
+    decoration: BoxDecoration(
+    color: Colors.blueGrey[200],
+    borderRadius: BorderRadius.circular(10)),
+    width: Get.width * 0.7,
+    height: Get.height * 0.1,
+    
+    child: Stack(
+      alignment: Alignment.centerLeft,
+      children: [
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Text('Quantidade de Prêmios: ', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+        ),
+        Positioned(
+          left: Get.width * 0.50,
+          child: Obx(() => Text(controller.premios.toString(), style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.red)))),
+        Positioned(
+          top: 5,
+          right: 5,          
+          child: InkWell(
+            onTap: (){
+                controller.cliquePremios('acima');
+            },
+            child: const Icon(Icons.arrow_drop_up,size: 40,),
+          ),),
+        Positioned(
+          bottom: 5,
+          right: 5,
+          child: InkWell(
+            onTap: (){
+                controller.cliquePremios('abaixo');
+            },
+            child: const Icon(Icons.arrow_drop_down,size: 40,),
+          ),),
+      ],
+    ),
+    );
+}
+return Container();
+  
+   }
 }

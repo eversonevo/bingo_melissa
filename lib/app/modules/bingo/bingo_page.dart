@@ -15,64 +15,96 @@ class BingoPage extends GetView<BingoController> {
         automaticallyImplyLeading: false,
         title: const Text('BingoPage'),
       ),
-      body: Column(
-        children: [
-          Text('Total de rodadas: '+controller.rodadas.toString()),
-          Container(
-            height: 50,
-            child: Row(
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: Get.width * 0.95,
+              height: Get.height * 0.05,
+              color: Colors.yellow,
+              margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('NÚMERO DE RODADAS '),
+                    Text(controller.rodadas.toString()),
+                  ],
+                ),
+                ),              
+            ),
+            //Text('Total de rodadas: '+controller.rodadas.toString()),
+            Container(
+              margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+              width: Get.width * 0.40,
+              height: Get.height * 0.05,
+              color: Colors.blue,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Text('Rodada: '),
+                    Obx (() => Text(controller.iniciaRodada.value.toString())),
+                    //TextButton(onPressed: controller.validaRodadas, child: Text('PRÓXIMA RODADA')),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 8,),
+            Row(
               children: [
-                Text('Rodada: '),
-                Obx (() => Text(controller.iniciaRodada.value.toString())),
-                TextButton(onPressed: controller.validaRodadas, child: Text('PRÓXIMA RODADA')),
+                //Text('Prêmio: '),
+                  //Obx (() => Text(controller.premios.value.toString())),
+                  SizedBox(
+                    width: Get.width,
+                    height: Get.height * 0.04,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.premios.value,
+                      itemBuilder: (_, index){
+                        return Expanded(child: GeraPremios(index: index));
+                      }),
+                  ),
               ],
             ),
-          ),
-          SizedBox(height: 8,),
-          Row(
-            children: [
-              Text('Prêmio: '),
-                Obx (() => Text(controller.premios.value.toString())),
-                SizedBox(
-                  width: Get.width * 0.9,
-                  height: 30,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.premios.value,
-                    itemBuilder: (_, index){
-                      return Expanded(child: GeraPremios(index: index));
-                    }),
-                ),
-            ],
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: 30,
-            child: Row(
-              children: [
-                Obx(() => Text(controller.tela.value)),
-                const SizedBox(
-                  width: 10,
-                ),
-                TextButton(
-                    onPressed: controller.drawNumber,
-                    child: const Text("SORTEAR")),
-              ],
+            SizedBox(
+              width: Get.width * 0.95,
+              height: Get.height * 0.06,
+              child: Row(
+                children: [
+                  Obx(() => Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(controller.tela.value, style:TextStyle(fontSize: 20, fontWeight: FontWeight.w600),))),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  TextButton.icon(
+                      icon: const Icon(Icons.add_box_rounded),
+                      onPressed: controller.drawNumber,
+                      label: const Text("SORTEAR")),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 550,
-            child: GridView.builder(
-                itemCount: controller.itemCount.value,
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 55,
-                ),
-                itemBuilder: (_, index) {
-                  return ButtonBingo(index: index,);
-                  }
-                ),
-          )
-        ],
+            SizedBox(
+              height: Get.height * 0.63,
+              child: GridView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: controller.itemCount.value,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 55,
+                  ),
+                  itemBuilder: (_, index) {
+                    return ButtonBingo(index: index,);
+                    }
+                  ),
+            ),
+            TextButton.icon(onPressed: () => Get.back(), icon: const Icon(Icons.cancel, color: Colors.red,), label: const Text('CANCELAR', style: TextStyle(color: Colors.red),))
+          ],
+        ),
       ),
     );
   }

@@ -23,13 +23,15 @@ class HomePage extends GetView<HomeController> {
                 children: [
                   CreateRowBingo(tipo: 'numeros'),
                 ],
-              ),              
+              ), 
+              const SizedBox(height: 8,),
               Row(
                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CreateRowBingo(tipo: 'rodadas'),
                 ],
               ),  
+              const SizedBox(height: 8,),
               Row(
                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -37,7 +39,7 @@ class HomePage extends GetView<HomeController> {
                 ],
               ),            
               
-              Center(child: TextButton(onPressed: controller.play, child: const Text('JOGAR'))),      
+              Center(child: TextButton.icon(onPressed: controller.play, icon: const Icon(Icons.play_arrow,size: 30,),label: const Text('JOGAR', style: TextStyle(fontSize: 22),))),      
             ],
           ),
     ),);

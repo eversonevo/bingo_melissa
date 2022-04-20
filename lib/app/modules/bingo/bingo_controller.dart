@@ -88,18 +88,30 @@ class BingoController extends GetxController {
     }
 
     void cliquePremio(int index){
-      if (listColor[index] == Colors.green){
-         listColor[index] = Colors.red;
-      } else {
-        listColor[index] = Colors.green;
-      }
-      if (index+1 == premios.value){
-        for (int i = 0;i < premios.value;i++) {
-          listColor[i] = Colors.green;
+      if (index+1 < premios.value){
+        if ((index == 0) || (listColor[index-1] == Colors.red)){
+          validaClique(index);
         }
-        validaRodadas();
+      } else {
+        if (listColor[index-1] == Colors.green){
+          return;
+        } else {
+          for (int i = 0;i < premios.value;i++) {
+            listColor[i] = Colors.green;
+        }
+          validaRodadas();
+        }
+        
       }
       
+    }
+
+    void validaClique(int index){
+      if (listColor[index] == Colors.green){
+           listColor[index] = Colors.red;
+        } else {
+          listColor[index] = Colors.green;
+        }
     }
     
 

@@ -15,17 +15,15 @@ class GeraPremios extends GetView<BingoController> {
          onTap: (){
            controller.cliquePremio(_index);
          },
-         child: Padding(
-           padding: const EdgeInsets.all(2.0),
-           child: Obx(() => 
-             Container(
-               color: controller.listColor[_index],
-               width: 80,
-               height: 20,
-               child: Center(
-                 child: Text(
-                   'PRÊMIO ${_index+1}'
-                 ),
+         child: Obx(() => 
+           Container(
+             margin: const EdgeInsets.fromLTRB(8, 4, 4, 0),
+             color: controller.listColor[_index],
+             width: Get.width * 0.20,
+             height: Get.height * 0.04,
+             child: Center(
+               child: Text(
+                 'PRÊMIO ${_index+1}'
                ),
              ),
            ),
