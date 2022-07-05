@@ -8,10 +8,7 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomePage'),
-      ),
+    return Scaffold(      
       body: Container(
         width: double.infinity,
           child: Column(
@@ -40,6 +37,7 @@ class HomePage extends GetView<HomeController> {
               ),            
               
               Center(child: TextButton.icon(onPressed: controller.play, icon: const Icon(Icons.play_arrow,size: 30,),label: const Text('JOGAR', style: TextStyle(fontSize: 22),))),      
+              Center(child: TextButton.icon(onPressed: controller.logout, icon: const Icon(Icons.close,size: 30,),label: const Text('SAIR', style: TextStyle(fontSize: 22),))),      
             ],
           ),
     ),);

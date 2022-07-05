@@ -113,6 +113,11 @@ class BingoController extends GetxController {
           listColor[index] = Colors.green;
         }
     }
+
+    void limpar(){
+      tela.value = '';
+      limpaNumber();
+    }
     
 
     

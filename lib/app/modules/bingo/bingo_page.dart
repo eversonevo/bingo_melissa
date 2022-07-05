@@ -1,6 +1,6 @@
 import 'package:bingo_melissa/app/modules/bingo/widgets/button_bingo.dart';
 import 'package:bingo_melissa/app/modules/bingo/widgets/gera_premios.dart';
-import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import './bingo_controller.dart';
@@ -66,7 +66,7 @@ class BingoPage extends GetView<BingoController> {
                       scrollDirection: Axis.horizontal,
                       itemCount: controller.premios.value,
                       itemBuilder: (_, index){
-                        return Expanded(child: GeraPremios(index: index));
+                        return GeraPremios(index: index);
                       }),
                   ),
               ],
@@ -78,7 +78,7 @@ class BingoPage extends GetView<BingoController> {
                 children: [
                   Obx(() => Padding(
                     padding: const EdgeInsets.all(8),
-                    child: Text(controller.tela.value, style:TextStyle(fontSize: 20, fontWeight: FontWeight.w600),))),
+                    child: Text(controller.tela.value, style:TextStyle(fontSize: 30, fontWeight: FontWeight.w600),))),
                   const SizedBox(
                     width: 10,
                   ),
@@ -86,6 +86,13 @@ class BingoPage extends GetView<BingoController> {
                       icon: const Icon(Icons.add_box_rounded),
                       onPressed: controller.drawNumber,
                       label: const Text("SORTEAR")),
+                      const SizedBox(
+                    width: 10,
+                  ),
+                  TextButton.icon(
+                      icon: const Icon(Icons.cancel),
+                      onPressed: controller.limpar,
+                      label: const Text("LIMPAR")),
                 ],
               ),
             ),
@@ -102,7 +109,7 @@ class BingoPage extends GetView<BingoController> {
                     }
                   ),
             ),
-            TextButton.icon(onPressed: () => Get.back(), icon: const Icon(Icons.cancel, color: Colors.red,), label: const Text('CANCELAR', style: TextStyle(color: Colors.red),))
+            TextButton.icon(onPressed: () => Get.back(), icon: const Icon(Icons.cancel, color: Colors.red,), label: const Text('CANCELAR', style: TextStyle(color: Colors.red),)),
           ],
         ),
       ),

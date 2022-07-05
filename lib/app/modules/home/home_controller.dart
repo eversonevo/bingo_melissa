@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -51,6 +54,14 @@ class HomeController extends GetxController {
       print('abaixo');
     }else{
       print('nada');
+    }
+  }
+
+  void logout(){
+    if (GetPlatform.isAndroid) {
+      SystemNavigator.pop();
+    } else if (GetPlatform.isIOS) {
+      exit(0);
     }
   }
 
