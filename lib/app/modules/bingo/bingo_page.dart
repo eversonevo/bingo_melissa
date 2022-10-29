@@ -73,7 +73,7 @@ class BingoPage extends GetView<BingoController> {
             ),
             SizedBox(
               width: Get.width * 0.95,
-              height: Get.height * 0.06,
+              height: Get.height * 0.12,
               child: Row(
                 children: [
                   Obx(() => Padding(
@@ -84,14 +84,21 @@ class BingoPage extends GetView<BingoController> {
                   ),
                   TextButton.icon(
                       icon: const Icon(Icons.add_box_rounded),
-                      onPressed: controller.drawNumber,
+                      onPressed: (){
+                        controller.drawNumber();
+                        controller.marcaListBingoB();
+                      },
                       label: const Text("SORTEAR")),
                       const SizedBox(
                     width: 10,
                   ),
                   TextButton.icon(
                       icon: const Icon(Icons.cancel),
-                      onPressed: controller.limpar,
+                      onPressed: (){
+                        controller.limpaListBingoB();
+                        controller.limpar();
+
+                      },
                       label: const Text("LIMPAR")),
                 ],
               ),

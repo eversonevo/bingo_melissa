@@ -7,10 +7,12 @@ import 'package:get/get.dart';
 
 class BingoController extends GetxController {
   RxString tela = "0".obs;
+  RxString telaB = "0".obs;
   RxInt numSorteado = 99.obs;
   RxInt itemCount = 75.obs;
   RxList<int> listaEscolhida = <int>[].obs;
   RxList<Bingo> listBingo = <Bingo>[].obs;
+  RxList<Bingo> listBingoB = <Bingo>[].obs;
   RxList<Premio> listPremio = <Premio>[].obs;
   RxInt numeros = 0.obs;
   RxInt rodadas = 0.obs;
@@ -21,6 +23,7 @@ class BingoController extends GetxController {
   @override
   void onInit() {
       super.onInit();
+      carregaBingoB();
       var data = Get.arguments;
       itemCount = data[0];
       rodadas = data[1];
@@ -31,6 +34,43 @@ class BingoController extends GetxController {
       carregaCores();
 
   }
+
+  // nova programação
+  void carregaBingoB(){
+    for (int i=0;i < itemCount.value;i++){
+      listBingoB.add(Bingo(index: i+1,selected: false));
+    }
+    print('list '+listBingoB.length.toString());
+  }
+
+  void marcaListBingoB(){
+    for (int i=0;i <= numSorteado.value;i++){
+      if (i != 0){
+         if (i == numSorteado.value){
+          listBingoB[i-1] = Bingo(index: numSorteado.value,selected: true);
+         } 
+      }
+      //listBingoB[i] = Bingo(index: numSorteado.value,selected: true);
+     }
+    if (listBingoB[numSorteado.value-1].selected){
+      print('list '+listBingoB[numSorteado.value-1].index.toString());
+    }else{
+      print('erro');
+    }
+  }
+
+  void limpaListBingoB(){
+    listBingoB.clear();
+    carregaBingoB();
+    print('lista b'+listBingoB.length.toString());
+  }
+
+
+
+
+
+
+  // ******************************
 
   void validaRodadas(){
     if (iniciaRodada.value < rodadas.value){
@@ -62,6 +102,7 @@ class BingoController extends GetxController {
     if (num == 0) {
       drawNumber();
     }
+    numSorteado.value = num;
     tela.value = num.toString();
     listBingo.forEach((b) {
       if (b.index == num){
